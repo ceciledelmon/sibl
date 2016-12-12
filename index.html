@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900" rel="stylesheet">
+  <link href="reset.css" rel="stylesheet">
+  <link href="main.css" rel="stylesheet" title="Default Style">
+  <title>Sibl</title>
+</head>
+<body>
+  <div class="introgif">
+    <!-- <img src="assets/introgif.gif" alt="introgif"> -->
+    <video width="100%" height="100%" autoplay="true">
+      <source src="assets/FOND.mp4" type="video/mp4" />
+    </video>
+  </div>
+  <div id="app" class="content">
+    <div class="question" v-for="question in questions" :id="question.id">
+      <h2>{{ question.question }} <mark>{{ question.questionSpan }}</mark> <span v-if="started">?</span></h2>
+      <form>
+        <div v-for="answer in question.answers" >
+          <input type="checkbox" :id="answer.id" name="type" :value="answer.value">
+          <label :class="answer.id" :for="answer.id">{{ answer.label }}</label>
+        </div>
+      </form>
+      <div class="stats">
+        <h2 class="statsContent">
+          <mark>{{ question.statNumber }}</mark>
+          {{ question.stats }}
+          <span class="answer">{{ question.statsAnswer }}</span>
+        </h2>
+      </div>
+    </div>
+    <div id="modal" v-if="win">
+      <div class="left" :id="'n'+lastId">
+        <p class="win">Tu es</p>
+        <h2 class="winner"><mark>{{ result }}</mark></h2>
+        <p class="date">
+          {{ dateNaissance }}
+        </p>
+      </div>
+      <div class="right" :id="'n'+lastId">
+          <h2>
+            <mark>NV{{lastId}}</mark>
+          </h2>
+          <p>Difficulté à</p>
+          <p>cibler ton profil</p>
+      </div>
+    </div>
+    <div id="tangram">
+    </div>
+    <div id="tangramContent">
+      <h2><mark>Qui</mark></br>es-tu<span>?</span></h2>
+      <ul class="left">
+        <li class="ordinateur">ordinateur</li>
+        <li class="postal">code postal</li>
+        <li class="tablette">tablette</li>
+        <li class="mention">mention</li>
+      </ul>
+      <ul class="right">
+        <li class="bac">bac</li>
+        <li class="twitter">twitter</li>
+        <li class="telephone">téléphone</li>
+      </ul>
+    </div>
+  </div>
+</body>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="main.js"></script>
+</html>
